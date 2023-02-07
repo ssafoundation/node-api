@@ -1,28 +1,27 @@
 const express = require("express");
 const router = express.Router();
 
-const Blog = require("../models/blog");
-//======get blog list
+const Todo = require("../models/todo");
+//======get todo list
 router.get("/", async (req, res) => {
   try {
-    const blog = await Blog.find();
-    res.json(blog);
+    const todo = await Todo.find();
+    res.json(todo);
   } catch {
     res.send(err);
   }
 });
-//======post blog list
+//======post todo list
 router.post("/", async (req, res) => {
-  const blogData = new Blog({
+  const todoData = new Todo({
     title: req.body.title,
     description: req.body.description,
   });
   try {
-    const blog1 = await blogData.save();
-    res.json(blog1);
-  } catch (err) {
+    const todo1 = await todoData.save();
+    res.json(todo1);
+  } catch {
     res.send(err);
-    console.log(err);
   }
 });
 
